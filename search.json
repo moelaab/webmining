@@ -1,0 +1,100 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Pengantar Sain Data",
+    "section": "",
+    "text": "Selamat di Pengantar Sain Data\nWebsite ini adalah portal buku kami yang pertama dengan judul Pengantar Sain Data, yang dibuat oleh Mulaab dan Muhammad Syarif . Buku ini adalah informasi mendasar tentang kerangka dasar untuk melakukan analisa data, informasi selengkapnya dapat anda dapatkan dalam versi cetak dalam buku pegangan yang diterbitkan oleh MNC dan dijual di Tokopedia\n\nCopyright © 2023.\nSecond Edition.\nVersion date: November 26, 2023.\nThis textbook and its supplements, including slides, labs, and interactive tutorials, may be downloaded for free at\nopenintro.org/book/ims.\nThis textbook is a derivative of OpenIntro Statistics 4th Edition and Introduction to Statistics with Randomization and Simulation 1st Edition by Diez, Barr, and Çetinkaya-Rundel, and it’s available under a Creative Commons Attribution-ShareAlike 3.0 Unported United States License. License details are available at the Creative Commons website:\ncreativecommons.org.\nSource files for this book can be found on GitHub at\ngithub.com/OpenIntroStat/ims."
+  },
+  {
+    "objectID": "grafik/grafik.html#matplotlib",
+    "href": "grafik/grafik.html#matplotlib",
+    "title": "2  Charting in Colaboratory",
+    "section": "2.1 Matplotlib",
+    "text": "2.1 Matplotlib\nMatplotlib is the most common charting package, see its documentation for details, and its examples for inspiration.\n\n2.1.1 Line Plots\n\nimport matplotlib.pyplot as plt\n\nx  = [1, 2, 3, 4, 5, 6, 7, 8, 9]\ny1 = [1, 3, 5, 3, 1, 3, 5, 3, 1]\ny2 = [2, 4, 6, 4, 2, 4, 6, 4, 2]\nplt.plot(x, y1, label=\"line L\")\nplt.plot(x, y2, label=\"line H\")\nplt.plot()\n\nplt.xlabel(\"x axis\")\nplt.ylabel(\"y axis\")\nplt.title(\"Line Graph Example\")\nplt.legend()\nplt.show()\n\n\n\n\n\n\n2.1.2 Bar Plots\n\nimport matplotlib.pyplot as plt\n\n# Look at index 4 and 6, which demonstrate overlapping cases.\nx1 = [1, 3, 4, 5, 6, 7, 9]\ny1 = [4, 7, 2, 4, 7, 8, 3]\n\nx2 = [2, 4, 6, 8, 10]\ny2 = [5, 6, 2, 6, 2]\n\n# Colors: https://matplotlib.org/api/colors_api.html\n\nplt.bar(x1, y1, label=\"Blue Bar\", color='b')\nplt.bar(x2, y2, label=\"Green Bar\", color='g')\nplt.plot()\n\nplt.xlabel(\"bar number\")\nplt.ylabel(\"bar height\")\nplt.title(\"Bar Chart Example\")\nplt.legend()\nplt.show()\n\n\n\n\n\n\n2.1.3 Histograms\n\nimport matplotlib.pyplot as plt\nimport numpy as np\n\n# Use numpy to generate a bunch of random data in a bell curve around 5.\nn = 5 + np.random.randn(1000)\n\nm = [m for m in range(len(n))]\nplt.bar(m, n)\nplt.title(\"Raw Data\")\nplt.show()\n\nplt.hist(n, bins=20)\nplt.title(\"Histogram\")\nplt.show()\n\nplt.hist(n, cumulative=True, bins=20)\nplt.title(\"Cumulative Histogram\")\nplt.show()\n\n\n\n\n\n\n\n\n\n\n\n\n2.1.4 Scatter Plots\n\nimport matplotlib.pyplot as plt\n\nx1 = [2, 3, 4]\ny1 = [5, 5, 5]\n\nx2 = [1, 2, 3, 4, 5]\ny2 = [2, 3, 2, 3, 4]\ny3 = [6, 8, 7, 8, 7]\n\n# Markers: https://matplotlib.org/api/markers_api.html\n\nplt.scatter(x1, y1)\nplt.scatter(x2, y2, marker='v', color='r')\nplt.scatter(x2, y3, marker='^', color='m')\nplt.title('Scatter Plot Example')\nplt.show()\n\n\n\n\n\n\n2.1.5 Stack Plots\n\nimport matplotlib.pyplot as plt\n\nidxes = [ 1,  2,  3,  4,  5,  6,  7,  8,  9]\narr1  = [23, 40, 28, 43,  8, 44, 43, 18, 17]\narr2  = [17, 30, 22, 14, 17, 17, 29, 22, 30]\narr3  = [15, 31, 18, 22, 18, 19, 13, 32, 39]\n\n# Adding legend for stack plots is tricky.\nplt.plot([], [], color='r', label = 'D 1')\nplt.plot([], [], color='g', label = 'D 2')\nplt.plot([], [], color='b', label = 'D 3')\n\nplt.stackplot(idxes, arr1, arr2, arr3, colors= ['r', 'g', 'b'])\nplt.title('Stack Plot Example')\nplt.legend()\nplt.show()\n\n\n\n\n\n\n2.1.6 Pie Charts\n\nimport matplotlib.pyplot as plt\n\nlabels = 'S1', 'S2', 'S3'\nsections = [56, 66, 24]\ncolors = ['c', 'g', 'y']\n\nplt.pie(sections, labels=labels, colors=colors,\n        startangle=90,\n        explode = (0, 0.1, 0),\n        autopct = '%1.2f%%')\n\nplt.axis('equal') # Try commenting this out.\nplt.title('Pie Chart Example')\nplt.show()\n\n\n\n\n\n\n2.1.7 fill_between and alpha\n\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nys = 200 + np.random.randn(100)\nx = [x for x in range(len(ys))]\n\nplt.plot(x, ys, '-')\nplt.fill_between(x, ys, 195, where=(ys &gt; 195), facecolor='g', alpha=0.6)\n\nplt.title(\"Fills and Alpha Example\")\nplt.show()\n\n\n\n\n\n\n2.1.8 Subplotting using Subplot2grid\n\nimport matplotlib.pyplot as plt\nimport numpy as np\n\ndef random_plots():\n  xs = []\n  ys = []\n\n  for i in range(20):\n    x = i\n    y = np.random.randint(10)\n\n    xs.append(x)\n    ys.append(y)\n\n  return xs, ys\n\nfig = plt.figure()\nax1 = plt.subplot2grid((5, 2), (0, 0), rowspan=1, colspan=2)\nax2 = plt.subplot2grid((5, 2), (1, 0), rowspan=3, colspan=2)\nax3 = plt.subplot2grid((5, 2), (4, 0), rowspan=1, colspan=1)\nax4 = plt.subplot2grid((5, 2), (4, 1), rowspan=1, colspan=1)\n\nx, y = random_plots()\nax1.plot(x, y)\n\nx, y = random_plots()\nax2.plot(x, y)\n\nx, y = random_plots()\nax3.plot(x, y)\n\nx, y = random_plots()\nax4.plot(x, y)\n\nplt.tight_layout()\nplt.show()"
+  },
+  {
+    "objectID": "grafik/grafik.html#plot-styles",
+    "href": "grafik/grafik.html#plot-styles",
+    "title": "2  Charting in Colaboratory",
+    "section": "2.2 Plot styles",
+    "text": "2.2 Plot styles\nColaboratory charts use Seaborn’s custom styling by default. To customize styling further please see the matplotlib docs."
+  },
+  {
+    "objectID": "grafik/grafik.html#d-graphs",
+    "href": "grafik/grafik.html#d-graphs",
+    "title": "2  Charting in Colaboratory",
+    "section": "2.3 3D Graphs",
+    "text": "2.3 3D Graphs\n\n2.3.1 3D Scatter Plots\n\nimport matplotlib.pyplot as plt\nimport numpy as np\nfrom mpl_toolkits.mplot3d import axes3d\n\nfig = plt.figure()\nax = fig.add_subplot(111, projection = '3d')\n\nx1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\ny1 = np.random.randint(10, size=10)\nz1 = np.random.randint(10, size=10)\n\nx2 = [-1, -2, -3, -4, -5, -6, -7, -8, -9, -10]\ny2 = np.random.randint(-10, 0, size=10)\nz2 = np.random.randint(10, size=10)\n\nax.scatter(x1, y1, z1, c='b', marker='o', label='blue')\nax.scatter(x2, y2, z2, c='g', marker='D', label='green')\n\nax.set_xlabel('x axis')\nax.set_ylabel('y axis')\nax.set_zlabel('z axis')\nplt.title(\"3D Scatter Plot Example\")\nplt.legend()\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n2.3.2 3D Bar Plots\n\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nfig = plt.figure()\nax = fig.add_subplot(111, projection = '3d')\n\nx = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\ny = np.random.randint(10, size=10)\nz = np.zeros(10)\n\ndx = np.ones(10)\ndy = np.ones(10)\ndz = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\n\nax.bar3d(x, y, z, dx, dy, dz, color='g')\n\nax.set_xlabel('x axis')\nax.set_ylabel('y axis')\nax.set_zlabel('z axis')\nplt.title(\"3D Bar Chart Example\")\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n2.3.3 Wireframe Plots\n\nimport matplotlib.pyplot as plt\n\nfig = plt.figure()\nax = fig.add_subplot(111, projection = '3d')\n\nx, y, z = axes3d.get_test_data()\n\nax.plot_wireframe(x, y, z, rstride = 2, cstride = 2)\n\nplt.title(\"Wireframe Plot Example\")\nplt.tight_layout()\nplt.show()"
+  },
+  {
+    "objectID": "grafik/grafik.html#seaborn",
+    "href": "grafik/grafik.html#seaborn",
+    "title": "2  Charting in Colaboratory",
+    "section": "2.4 Seaborn",
+    "text": "2.4 Seaborn\nThere are several libraries layered on top of Matplotlib that you can use in Colab. One that is worth highlighting is Seaborn:\n\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport seaborn as sns\n\n# Generate some random data\nnum_points = 20\n# x will be 5, 6, 7... but also twiddled randomly\nx = 5 + np.arange(num_points) + np.random.randn(num_points)\n# y will be 10, 11, 12... but twiddled even more randomly\ny = 10 + np.arange(num_points) + 5 * np.random.randn(num_points)\nsns.regplot(x, y)\nplt.show()\n\n\n\n\nThat’s a simple scatterplot with a nice regression line fit to it, all with just one call to Seaborn’s regplot.\nHere’s a Seaborn heatmap:\n\nimport matplotlib.pyplot as plt\nimport numpy as np\n\n# Make a 10 x 10 heatmap of some random data\nside_length = 10\n# Start with a 10 x 10 matrix with values randomized around 5\ndata = 5 + np.random.randn(side_length, side_length)\n# The next two lines make the values larger as we get closer to (9, 9)\ndata += np.arange(side_length)\ndata += np.reshape(np.arange(side_length), (side_length, 1))\n# Generate the heatmap\nsns.heatmap(data)\nplt.show()"
+  },
+  {
+    "objectID": "grafik/grafik.html#altair",
+    "href": "grafik/grafik.html#altair",
+    "title": "2  Charting in Colaboratory",
+    "section": "2.5 Altair",
+    "text": "2.5 Altair\nAltair is a declarative visualization library for creating interactive visualizations in Python, and is installed and enabled in Colab by default.\nFor example, here is an interactive scatter plot:\n\nimport altair as alt\nfrom vega_datasets import data\ncars = data.cars()\n\nalt.Chart(cars).mark_point().encode(\n    x='Horsepower',\n    y='Miles_per_Gallon',\n    color='Origin',\n).interactive()\n\n\n\n\n\n\nFor more examples of Altair plots, see the Altair snippets notebook or the external Altair Example Gallery."
+  },
+  {
+    "objectID": "grafik/grafik.html#plotly",
+    "href": "grafik/grafik.html#plotly",
+    "title": "2  Charting in Colaboratory",
+    "section": "2.6 Plotly",
+    "text": "2.6 Plotly\n\n2.6.1 Sample\n\nfrom plotly.offline import iplot\nimport plotly.graph_objs as go\n\ndata = [\n    go.Contour(\n        z=[[10, 10.625, 12.5, 15.625, 20],\n           [5.625, 6.25, 8.125, 11.25, 15.625],\n           [2.5, 3.125, 5., 8.125, 12.5],\n           [0.625, 1.25, 3.125, 6.25, 10.625],\n           [0, 0.625, 2.5, 5.625, 10]]\n    )\n]\niplot(data)"
+  },
+  {
+    "objectID": "grafik/grafik.html#bokeh",
+    "href": "grafik/grafik.html#bokeh",
+    "title": "2  Charting in Colaboratory",
+    "section": "2.7 Bokeh",
+    "text": "2.7 Bokeh\n\n2.7.1 Sample\n\nimport numpy as np\nfrom bokeh.plotting import figure, show\nfrom bokeh.io import output_notebook\n\n# Call once to configure Bokeh to display plots inline in the notebook.\noutput_notebook()\n\n\nN = 4000\nx = np.random.random(size=N) * 100\ny = np.random.random(size=N) * 100\nradii = np.random.random(size=N) * 1.5\ncolors = [\"#%02x%02x%02x\" % (r, g, 150) for r, g in zip(np.floor(50+2*x).astype(int), np.floor(30+2*y).astype(int))]\n\np = figure()\np.circle(x, y, radius=radii, fill_color=colors, fill_alpha=0.6, line_color=None)\nshow(p)"
+  },
+  {
+    "objectID": "grafik/kernel.html",
+    "href": "grafik/kernel.html",
+    "title": "3  Kernels and Feature maps: Theory and intuition",
+    "section": "",
+    "text": "4 Theory and derivations\nFrom the following stats.stackexchange post: - https://stats.stackexchange.com/questions/152897/how-to-intuitively-explain-what-a-kernel-is/355046#355046\nConsider the following dataset where the yellow and blue points are clearly not linearly separable in two dimensions.\nIf we could find a higher dimensional space in which these points were linearly separable, then we could do the following:\nThere are many higher dimensional spaces in which these points are linearly separable. Here is one example\n\\[ x_1, x_2 : \\rightarrow z_1, z_2, z_3\\] \\[ z_1 = \\sqrt{2}x_1x_2 \\ \\   z_2 = x_1^2 \\ \\  z_3 = x_2^2\\]\nThis is where the Kernel trick comes into play. Quoting the above great answers\nIf we could find a kernel function that was equivalent to the above feature map, then we could plug the kernel function in the linear SVM and perform the calculations very efficiently."
+  },
+  {
+    "objectID": "grafik/kernel.html#sklearn-implementation-of-svc-with-gram-matrix",
+    "href": "grafik/kernel.html#sklearn-implementation-of-svc-with-gram-matrix",
+    "title": "3  Kernels and Feature maps: Theory and intuition",
+    "section": "7.1 Sklearn implementation of SVC with Gram matrix",
+    "text": "7.1 Sklearn implementation of SVC with Gram matrix\n\nfrom sklearn import svm\nfrom sklearn.metrics import accuracy_score\n\nclf = svm.SVC(kernel='precomputed')\n# kernel computation\ngram = np.dot(feature_map_2(X), feature_map_2(X).T)\nclf.fit(gram, y) \n\n# prediction errors on training examples\nnp.sum(y - clf.predict(gram))\n\n0"
+  },
+  {
+    "objectID": "grafik/kernel.html#sklearn-implementation-using-custom-kernel",
+    "href": "grafik/kernel.html#sklearn-implementation-using-custom-kernel",
+    "title": "3  Kernels and Feature maps: Theory and intuition",
+    "section": "7.2 Sklearn implementation using custom Kernel",
+    "text": "7.2 Sklearn implementation using custom Kernel\n\ndef my_kernel_1(X,Y):\n    return np.dot(feature_map_1(X),feature_map_1(Y).T )\n\ndef my_kernel_2(X,Y):\n    return np.dot(feature_map_2(X),feature_map_2(Y).T )\n\ndef my_kernel_3(X,Y):\n    return np.dot(feature_map_3(X),feature_map_3(Y).T )\n\n\n#SVM using kernel 1 - feature map 1\nclf = svm.SVC(kernel=my_kernel_1)\nclf.fit(X, y) \n\n# predict on training examples - print accuracy score\nprint('Accuracy score using feature map n1',accuracy_score(y, clf.predict(X)))\n\n#SVM using kernel 2 - feature map 2\nclf = svm.SVC(kernel=my_kernel_2)\nclf.fit(X, y) \n\n# predict on training examples - print accuracy score\nprint('Accuracy score using feature map n2',accuracy_score(y, clf.predict(X)))\n\n#SVM using kernel 3 - feature map 3\nclf = svm.SVC(kernel=my_kernel_3)\nclf.fit(X, y) \n\n# predict on training examples - print accuracy score\nprint('Accuracy score using feature map n3',accuracy_score(y, clf.predict(X)))\n\nAccuracy score using feature map n1 1.0\nAccuracy score using feature map n2 1.0\nAccuracy score using feature map n3 1.0"
+  },
+  {
+    "objectID": "grafik/kernel.html#plot-decision-boundary",
+    "href": "grafik/kernel.html#plot-decision-boundary",
+    "title": "3  Kernels and Feature maps: Theory and intuition",
+    "section": "7.3 Plot decision boundary",
+    "text": "7.3 Plot decision boundary\n\nclf = svm.SVC(kernel=my_kernel_3, C = 1)\n# kernel computation\nclf.fit(X, y) \n\n#Initialize data\nh = .01 #Stepsize in the mesh\nx_min, x_max = X[:, 0].min() - .5, X[:, 0].max() + .5\ny_min, y_max = X[:, 1].min() - .5, X[:, 1].max() + .5\nxx, yy = np.meshgrid(np.arange(x_min, x_max, h), np.arange(y_min, y_max, h))\n\n#Predict on meshgrid\nZ = clf.predict(np.c_[xx.ravel(), yy.ravel()])\n\n# Put the result into a color plot\nZ = Z.reshape(xx.shape)\nplt.figure(figsize = (7,7))\nplt.contourf(xx, yy, Z,1, colors = ['darkblue','yellow'], alpha = .1)\nplt.contour(xx, yy, Z, cmap = 'viridis')\n\n# Plot also the training points\nplt.scatter(X[:, 0], X[:, 1], c=y, cmap='viridis', edgecolors = 'k')\nplt.title('Support Vector Machine with polynomial'\n          ' kernel')\nplt.xlabel('$x_1$')\nplt.ylabel('$x_2$')\n\nText(0,0.5,'$x_2$')"
+  },
+  {
+    "objectID": "grafik/pca.html",
+    "href": "grafik/pca.html",
+    "title": "4  Contoh",
+    "section": "",
+    "text": "\\[ \\chi^2 = \\sum_{i, j} \\frac{\\big(O_{ij} - E_{ij}\\big)^2}{E_{ij}}\\]\nmakanan itu dapat digunakan dengan \\(x+2\\)\n\npip install academics-scholar-scraper\n\nCollecting academics-scholar-scraper\n  Downloading academics_scholar_scraper-0.1.1-py3-none-any.whl (5.5 kB)\nCollecting argparse (from academics-scholar-scraper)\n  Downloading argparse-1.4.0-py2.py3-none-any.whl (23 kB)\nRequirement already satisfied: requests in /usr/local/lib/python3.10/dist-packages (from academics-scholar-scraper) (2.27.1)\nRequirement already satisfied: tqdm in /usr/local/lib/python3.10/dist-packages (from academics-scholar-scraper) (4.65.0)\nCollecting openai (from academics-scholar-scraper)\n  Downloading openai-0.27.8-py3-none-any.whl (73 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 73.6/73.6 kB 3.5 MB/s eta 0:00:00\nRequirement already satisfied: aiohttp in /usr/local/lib/python3.10/dist-packages (from openai-&gt;academics-scholar-scraper) (3.8.4)\nRequirement already satisfied: urllib3&lt;1.27,&gt;=1.21.1 in /usr/local/lib/python3.10/dist-packages (from requests-&gt;academics-scholar-scraper) (1.26.16)\nRequirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.10/dist-packages (from requests-&gt;academics-scholar-scraper) (2023.5.7)\nRequirement already satisfied: charset-normalizer~=2.0.0 in /usr/local/lib/python3.10/dist-packages (from requests-&gt;academics-scholar-scraper) (2.0.12)\nRequirement already satisfied: idna&lt;4,&gt;=2.5 in /usr/local/lib/python3.10/dist-packages (from requests-&gt;academics-scholar-scraper) (3.4)\nRequirement already satisfied: attrs&gt;=17.3.0 in /usr/local/lib/python3.10/dist-packages (from aiohttp-&gt;openai-&gt;academics-scholar-scraper) (23.1.0)\nRequirement already satisfied: multidict&lt;7.0,&gt;=4.5 in /usr/local/lib/python3.10/dist-packages (from aiohttp-&gt;openai-&gt;academics-scholar-scraper) (6.0.4)\nRequirement already satisfied: async-timeout&lt;5.0,&gt;=4.0.0a3 in /usr/local/lib/python3.10/dist-packages (from aiohttp-&gt;openai-&gt;academics-scholar-scraper) (4.0.2)\nRequirement already satisfied: yarl&lt;2.0,&gt;=1.0 in /usr/local/lib/python3.10/dist-packages (from aiohttp-&gt;openai-&gt;academics-scholar-scraper) (1.9.2)\nRequirement already satisfied: frozenlist&gt;=1.1.1 in /usr/local/lib/python3.10/dist-packages (from aiohttp-&gt;openai-&gt;academics-scholar-scraper) (1.4.0)\nRequirement already satisfied: aiosignal&gt;=1.1.2 in /usr/local/lib/python3.10/dist-packages (from aiohttp-&gt;openai-&gt;academics-scholar-scraper) (1.3.1)\nInstalling collected packages: argparse, openai, academics-scholar-scraper\nSuccessfully installed academics-scholar-scraper-0.1.1 argparse-1.4.0 openai-0.27.8\n\n\nUnable to display output for mime type(s): application/vnd.colab-display-data+json\n\n\n\npip install argparse requests tqdm concurrent.futures openai\n\nCollecting argparse\n  Using cached argparse-1.4.0-py2.py3-none-any.whl (23 kB)\nRequirement already satisfied: requests in /usr/local/lib/python3.10/dist-packages (2.27.1)\nRequirement already satisfied: tqdm in /usr/local/lib/python3.10/dist-packages (4.65.0)\nERROR: Could not find a version that satisfies the requirement concurrent.futures (from versions: none)\nERROR: No matching distribution found for concurrent.futures"
+  },
+  {
+    "objectID": "grafik/summary.html",
+    "href": "grafik/summary.html",
+    "title": "5  Summary",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever."
+  }
+]
